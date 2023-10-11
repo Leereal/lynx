@@ -12,13 +12,13 @@
                             <h1 class="text-2xl font-bold text-green">Dashboard</h1>
                         </div>
                         <div class="shadow-xl rounded p-3 mt-5">
-                            <LinkForm />
+                            <LinkForm @created="refresh" />
                         </div>
                         <div class="mt-10">
-                            <LinkItem v-for="i in 10" :key="i" :link="{
-                                shortKey: 'test',
-                                longUrl: 'https://google.com',
-                                id: '1'
+                            <LinkItem v-for="link in data" :key="link.id" :link="{
+                                shortKey: link.short_key,
+                                longUrl: link.long_url ?? '',
+                                id: link.id
                             }" />
                         </div>
                     </div>
@@ -27,4 +27,17 @@
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+import { Database } from 'types/supabase'
+definePageMeta({
+    middleware: 'auth'
+})
+const client = useSupabaseClient<Database>();
+const user = useSupabaseUser()
+const { data, refresh } = useAsyncData('links', async () => {
+    const { data, error } = await client.from('links').select('*').eq('user_id', user.value?.id)
+    return data
+})
+</script>
 

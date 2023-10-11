@@ -2,6 +2,9 @@
   <HeroSection />
 </template>
 <script setup lang="ts">
+// definePageMeta({
+//   middleware: 'auth'
+// })
 useHead({
   title: "Lynx : URL shortener",
   meta: [

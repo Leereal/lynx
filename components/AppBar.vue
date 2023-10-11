@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <div
     class="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-green-400 to-blue-600 filter blur-3xl opacity-50 -z-50" />
@@ -51,11 +49,18 @@
               </ul>
             </div>
 
-            <div class="mt-12 lg:mt-0">
-              <NuxtLink :to="{ name: '' }"
+            <div class="mt-12 lg:mt-0" v-if="!user">
+              <NuxtLink :to="{ name: 'auth' }"
                 class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
                 <span class="relative text-sm font-semibold text-white">Get Started</span>
               </NuxtLink>
+            </div>
+            <div class="mt-12 lg:mt-0" v-else>
+              <span
+                class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max cursor-pointer"
+                @click="handleLogout">
+                <span class="relative text-sm font-semibold text-white">Sign Out</span>
+              </span>
             </div>
           </div>
         </div>
@@ -63,3 +68,14 @@
     </nav>
   </header>
 </template>
+<script lang="ts" setup>
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+
+const handleLogout = async () => {
+  await supabase.auth.signOut().then(() => {
+    useRouter().push('/')
+  })
+
+}
+</script>

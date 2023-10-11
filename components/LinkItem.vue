@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-xl rounded p-5 justify-between flex mb-7">
+    <div class="shadow-xl rounded p-5 justify-between flex mb-7" v-motion-roll-top>
         <div>
             <div class="font-bold text-2xl text-primary">/{{ link.shortKey }}</div>
             <div class="text-sm text-gray-300">

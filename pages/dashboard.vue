@@ -36,7 +36,7 @@ definePageMeta({
 const client = useSupabaseClient<Database>();
 const user = useSupabaseUser()
 const { data, refresh } = useAsyncData('links', async () => {
-    const { data, error } = await client.from('links').select('*').eq('user_id', user.value?.id)
+    const { data, error } = await client.from('links').select('*').eq('user_id', user.value?.id).order('id', { ascending: false })
     return data
 })
 </script>

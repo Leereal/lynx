@@ -6,7 +6,7 @@
     </div>
     <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
       <div class="relative pt-36 ml-auto">
-        <div class="lg:w-2/3 text-center mx-auto h-screen">
+        <div class="lg:w-2/3 text-center mx-auto h-screen " v-motion-roll-bottom>
           <Login />
         </div>
       </div>

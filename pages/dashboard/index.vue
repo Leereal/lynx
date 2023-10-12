@@ -18,7 +18,8 @@
                             <LinkItem v-for="link in data" :key="link.id" :link="{
                                 shortKey: link.short_key,
                                 longUrl: link.long_url ?? '',
-                                id: link.id
+                                id: link.id,
+                                totalClicks: link.total_clicks ?? 0
                             }" />
                         </div>
                     </div>

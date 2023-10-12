@@ -12,7 +12,7 @@
                 <div class="h-4 w-4 rounded-full bg-gray-900 dark:bg-white"></div>
                 <div class="h-6 w-2 bg-primary"></div>
               </div>
-              <span class="text-2xl font-bold text-gray-900 dark:text-white">Lynx</span>
+              <span class="text-2xl font-bold text-gray-900 dark:text-white">Lynx {{ path }}</span>
             </NuxtLink>
 
             <div class="relative flex items-center lg:hidden max-h-10">
@@ -48,8 +48,13 @@
                 </li>
               </ul>
             </div>
-
-            <div class="mt-12 lg:mt-0" v-if="!user">
+            <div class="mt-12 lg:mt-0" v-if="(user && path === '/')">
+              <NuxtLink :to="{ name: 'dashboard' }"
+                class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
+                <span class="relative text-sm font-semibold text-white">Dashboard</span>
+              </NuxtLink>
+            </div>
+            <div class="mt-12 lg:mt-0" v-else-if="!user">
               <NuxtLink :to="{ name: 'auth' }"
                 class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
                 <span class="relative text-sm font-semibold text-white">Get Started</span>
@@ -71,6 +76,7 @@
 <script lang="ts" setup>
 const user = useSupabaseUser()
 const supabase = useSupabaseClient()
+const path = useRouter().currentRoute.value.path
 
 const handleLogout = async () => {
   await supabase.auth.signOut().then(() => {

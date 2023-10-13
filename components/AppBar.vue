@@ -12,7 +12,7 @@
                 <div class="h-4 w-4 rounded-full bg-gray-900 dark:bg-white"></div>
                 <div class="h-6 w-2 bg-primary"></div>
               </div>
-              <span class="text-2xl font-bold text-gray-900 dark:text-white">Lynx {{ path }}</span>
+              <span class="text-2xl font-bold text-gray-900 dark:text-white">Lynx</span>
             </NuxtLink>
 
             <div class="relative flex items-center lg:hidden max-h-10">

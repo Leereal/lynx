@@ -128,7 +128,6 @@ const handleFormLogin = async () => {
 
 const handleSignUp = async () => {
     try {
-        console.log("Registering");
         const { data, error } = await supabase.auth.signUp({
             email: email.value,
             password: password.value
@@ -140,7 +139,6 @@ const handleSignUp = async () => {
         }
 
         err = 'Registered Successfully'
-        console.log("Register : ", data);
 
     } catch (error) {
         console.error(error);

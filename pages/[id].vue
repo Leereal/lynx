@@ -27,7 +27,6 @@ const { data } = await useAsyncData('link', async () => {
 
 if (data.value?.long_url) {
     const ua = useUserAgent();
-    console.log("UA", ua);
     if (ua && ua.ip) {
         const geo = geoip.lookup('207.97.227.239')
 
@@ -51,7 +50,6 @@ if (data.value?.long_url) {
             if (error) {
                 console.log("Error", error)
             }
-            console.log("Data : ", res)
         }
     }
     useExternalRedirect(data.value?.long_url)
